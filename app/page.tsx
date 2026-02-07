@@ -1,4 +1,5 @@
 import Card from "@/components/card";
+import FilterBox from "@/components/filter";
 
 import Link from "next/link";
 interface DataProp {
@@ -16,7 +17,7 @@ export default async function Home() {
   console.log(data.results[0].image);
 
   return (
-    <div className="flex gap-1">
+    <div className="">
       {data.results.map((x, i) => (
         <Card
           key={i}
@@ -30,6 +31,7 @@ export default async function Home() {
       <Link href={`/character/`} className="text-white">
         link
       </Link>
+      <FilterBox />
     </div>
   );
 }
