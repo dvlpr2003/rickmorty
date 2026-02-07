@@ -20,13 +20,16 @@ export default async function Home() {
       {data.results.map((x, i) => (
         <Card
           key={i}
+          id={i}
           name={x.name}
           gender={x.gender}
           status={x.status}
           image={x.image}
         />
       ))}
-      <Link href={`/character/1/ch`} className="text-white"></Link>
+      <Link href={`/character/`} className="text-white">
+        link
+      </Link>
     </div>
   );
 }
