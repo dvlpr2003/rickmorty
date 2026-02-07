@@ -1,4 +1,6 @@
 import Card from "@/components/card";
+
+import Link from "next/link";
 interface DataProp {
   name: string;
   status: string;
@@ -24,6 +26,7 @@ export default async function Home() {
           image={x.image}
         />
       ))}
+      <Link href={`/character/1/ch`} className="text-white"></Link>
     </div>
   );
 }
