@@ -1,30 +1,19 @@
-interface Gadgets {
-  readonly id: string;
+interface Character {
   name: string;
-  price: number;
-  isWaterproof?: boolean;
-  applyDiscount: (discount: number) => number;
+  hp: number;
+  attack: () => void;
+  defend: (damage: number) => number;
 }
 
-interface SmartWatch extends Gadgets {
-  strapMaterial: string;
-  HeartRateMonitor: boolean;
-  hasHeartRateMonitor(): string;
-}
-
-const myWatch: SmartWatch = {
-  id: "sw3-1",
-  name: "rolex",
-  price: 29.9,
-  isWaterproof: true,
-  strapMaterial: "wood",
-  HeartRateMonitor: false,
-  hasHeartRateMonitor() {
-    return this.HeartRateMonitor ? "yes" : "no";
+const hero: Character = {
+  name: "Iron man",
+  hp: 100,
+  attack() {
+    return this.hp - 10;
   },
-  applyDiscount(discount: number) {
-    const discountAmount = this.price * (discount / 100);
-    return this.price - discountAmount;
+  defend(damage: number) {
+    return 100 - damage;
   },
 };
-console.log(myWatch.applyDiscount(4));
+
+console.log(hero.defend(80));
