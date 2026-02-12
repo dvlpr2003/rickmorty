@@ -1,6 +1,7 @@
 import Card from "@/components/card";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import SearchFilter from "@/components/searchFilter";
 interface objectProps {
   id: number;
   name: string;
@@ -15,12 +16,15 @@ interface dataProps {
 export default async function Home({
   searchParams,
 }: {
-  searchParams: Promise<{ page?: string }>;
+  searchParams: Promise<{ page?: string; status: string }>;
 }) {
   const params = await searchParams;
+
   const currentPage = Number(params?.page) || 1;
+  const status = params?.status || "";
+  console.log(status);
   const res = await fetch(
-    `https://rickandmortyapi.com/api/character/?page=${currentPage}`,
+    `https://rickandmortyapi.com/api/character/?page=${currentPage}&status=${status}`,
   );
   if (!res.ok) {
     notFound();
@@ -45,6 +49,7 @@ export default async function Home({
       <button className="bg-amber-400 text-black">
         <Link href={`/?page=${currentPage + 1}`}>Click</Link>
       </button>
+      <SearchFilter />
     </div>
   );
 }
