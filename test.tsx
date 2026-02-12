@@ -1,19 +1,16 @@
 interface Character {
-  name: string;
-  hp: number;
-  attack: () => void;
-  defend: (damage: number) => number;
+  Username: string;
+  friends: string[];
+  addfriend: (name: string) => void;
 }
 
-const hero: Character = {
-  name: "Iron man",
-  hp: 100,
-  attack() {
-    return this.hp - 10;
-  },
-  defend(damage: number) {
-    return 100 - damage;
+const SocialMedia: Character = {
+  Username: "dvlpr",
+  friends: ["sydney", "olivia rodrigo"],
+  addfriend(name) {
+    this.friends.push(name);
+    return this.friends;
   },
 };
 
-console.log(hero.defend(80));
+console.log(SocialMedia.addfriend("kendall"));
