@@ -22,3 +22,29 @@ export async function searchCharacter(formData: FormData) {
   // We force it to lowercase because the API expects "pikachu", not "Pikachu"
   redirect(`/char/filter/${searchName}/${searchStatus}`);
 }
+
+import { ConvexHttpClient } from "convex/browser";
+import { api } from "@/convex/_generated/api"; // 👈 This might have a red squiggly for a second, it's ok!
+import { revalidatePath } from "next/cache";
+
+// Connect to your database using the URL from .env.local
+const client = new ConvexHttpClient(process.env.NEXT_PUBLIC_CONVEX_URL!);
+
+async function toggleFavorite(formData: FormData) {
+  // 1. Extract data from the form
+  const characterId = formData.get("characterId") as string;
+  const characterName = formData.get("characterName") as string;
+
+  if (!characterId) return;
+
+  // 2. Call the Convex function we just wrote
+  await client.mutation(api.favorites.saveFavorite, {
+    characterId,
+    name: characterName,
+  });
+
+  // 3. Refresh the page
+  revalidatePath("/");
+}
+
+export { toggleFavorite };
