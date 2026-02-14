@@ -1,6 +1,9 @@
 "use server"; // 👈 This is the magic line. It runs on the server.
 
 import { redirect } from "next/navigation";
+import { ConvexHttpClient } from "convex/browser";
+import { api } from "@/convex/_generated/api"; // 👈 This might have a red squiggly for a second, it's ok!
+import { revalidatePath } from "next/cache";
 
 // This function receives the form data automatically
 export async function searchCharacter(formData: FormData) {
@@ -23,10 +26,6 @@ export async function searchCharacter(formData: FormData) {
   redirect(`/char/filter/${searchName}/${searchStatus}`);
 }
 
-import { ConvexHttpClient } from "convex/browser";
-import { api } from "@/convex/_generated/api"; // 👈 This might have a red squiggly for a second, it's ok!
-import { revalidatePath } from "next/cache";
-
 // Connect to your database using the URL from .env.local
 const client = new ConvexHttpClient(process.env.NEXT_PUBLIC_CONVEX_URL!);
 
@@ -47,4 +46,15 @@ async function toggleFavorite(formData: FormData) {
   revalidatePath("/");
 }
 
-export { toggleFavorite };
+const commentsUpdate = async (formData: FormData) => {
+  const characterId = formData.get("characterId") as string;
+  const text = formData.get("text") as string;
+
+  await client.mutation(api.comments.CommentsSave, {
+    characterId,
+    text,
+  });
+  revalidatePath("/");
+};
+
+export { toggleFavorite, commentsUpdate };

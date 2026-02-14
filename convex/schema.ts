@@ -7,4 +7,8 @@ export default defineSchema({
     characterId: v.string(),
     name: v.string(),
   }),
+  Comments: defineTable({
+    characterId: v.string(),
+    text: v.string(),
+  }),
 });

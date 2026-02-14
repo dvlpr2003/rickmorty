@@ -2,6 +2,8 @@ import Card from "@/components/card";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import SearchFilter from "@/components/searchFilter";
+
+import CommentBox from "@/components/comment";
 interface objectProps {
   id: number;
   name: string;
@@ -43,13 +45,15 @@ export default async function Home({
           image={x.image}
         />
       ))}
-      <button className="bg-white text-black mr-4">
+      {/* <button className="bg-white text-black mr-4">
         <Link href={`/?page=${1}`}>Click to one</Link>
       </button>
       <button className="bg-amber-400 text-black">
         <Link href={`/?page=${currentPage + 1}`}>Click</Link>
       </button>
-      <SearchFilter />
+      <SearchFilter /> */}
+
+      <CommentBox />
     </div>
   );
 }
