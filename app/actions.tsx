@@ -57,4 +57,18 @@ const commentsUpdate = async (formData: FormData) => {
   revalidatePath("/");
 };
 
-export { toggleFavorite, commentsUpdate };
+const filloutForm = async (formData: FormData) => {
+  const name = formData.get("name") as string;
+  const age = formData.get("age") as string;
+  const address = formData.get("address") as string;
+  const isgraduate = formData.get("isgraduate") === "yes";
+
+  await client.mutation(api.info.saveInfo, {
+    name,
+    age: parseInt(age),
+    address,
+    isgraduate,
+  });
+};
+export { toggleFavorite, commentsUpdate, filloutForm };
+7;

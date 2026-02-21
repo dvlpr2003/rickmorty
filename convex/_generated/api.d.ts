@@ -10,6 +10,7 @@
 
 import type * as comments from "../comments.js";
 import type * as favorites from "../favorites.js";
+import type * as info from "../info.js";
 
 import type {
   ApiFromModules,
@@ -20,6 +21,7 @@ import type {
 declare const fullApi: ApiFromModules<{
   comments: typeof comments;
   favorites: typeof favorites;
+  info: typeof info;
 }>;
 
 /**

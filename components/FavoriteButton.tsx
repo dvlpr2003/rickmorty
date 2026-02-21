@@ -1,5 +1,5 @@
 import { toggleFavorite } from "@/app/actions";
-
+import { Button as Shed } from "@/components/ui/button";
 export default function FavoriteButton({
   id,
   name,
@@ -14,12 +14,12 @@ export default function FavoriteButton({
       <input type="hidden" name="characterId" value={id} />
       <input type="hidden" name="characterName" value={name} />
 
-      <button
+      <Shed
         type="submit"
-        className="mt-2 px-4 py-1 bg-red-500 text-white text-sm rounded hover:bg-red-600 transition"
+        className="mt-2 px-4 py-1 bg-green-500 text-white text-sm rounded hover:bg-green-600 transition"
       >
-        ❤️ Favorite
-      </button>
+        💚 Favorite
+      </Shed>
     </form>
   );
 }

@@ -11,4 +11,10 @@ export default defineSchema({
     characterId: v.string(),
     text: v.string(),
   }),
+  Info: defineTable({
+    name: v.string(),
+    age: v.number(),
+    address: v.string(),
+    isgraduate: v.boolean(),
+  }),
 });
