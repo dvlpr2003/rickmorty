@@ -8,8 +8,6 @@
  * @module
  */
 
-import type * as comments from "../comments.js";
-import type * as favorites from "../favorites.js";
 import type * as info from "../info.js";
 
 import type {
@@ -19,8 +17,6 @@ import type {
 } from "convex/server";
 
 declare const fullApi: ApiFromModules<{
-  comments: typeof comments;
-  favorites: typeof favorites;
   info: typeof info;
 }>;
 
