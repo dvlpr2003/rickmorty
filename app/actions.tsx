@@ -71,4 +71,3 @@ const filloutForm = async (formData: FormData) => {
   });
 };
 export { toggleFavorite, commentsUpdate, filloutForm };
-7;

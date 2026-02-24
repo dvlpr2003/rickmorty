@@ -1,5 +1,5 @@
 import { mutation } from "@/convex/_generated/server";
-
+import { query } from "@/convex/_generated/server";
 import { v } from "convex/values";
 
 export const saveInfo = mutation({
@@ -16,5 +16,11 @@ export const saveInfo = mutation({
       address: args.address,
       isgraduate: args.isgraduate,
     });
+  },
+});
+
+export const retrieveInfo = query({
+  handler: async (ctx) => {
+    return await ctx.db.query("Info").collect();
   },
 });
