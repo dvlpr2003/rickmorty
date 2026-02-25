@@ -16,3 +16,10 @@ export const retrieveInfo = query({
     return await ctx.db.query("Infox").collect();
   },
 });
+
+export const deleteinfo = mutation({
+  args: { id: v.id("Infox") },
+  handler: async (ctx, args) => {
+    await ctx.db.delete(args.id);
+  },
+});
